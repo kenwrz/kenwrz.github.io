@@ -1,0 +1,43 @@
+<!DOCTYPE html>    
+<html>    
+<head>    
+    <meta charset="UTF-8">    
+    <!--必要的两个js-->
+    <script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>   
+    <script src="https://cdn.jsdelivr.net/clipboard.js/1.5.12/clipboard.min.js"></script>  
+  
+    <title>复制按钮</title> 
+	<script>
+    var arr_wx = ['wrzazhe','18859238978'];//数字可在此处改，多个数组用英文逗号隔开
+    var wx_index = Math.floor((Math.random() * arr_wx.length));
+    var stxlwx = arr_wx[wx_index];
+    var wximg = "<img src='img/"+stxlwx+".jpg'>";//图片命名必须跟数组一样，记得新建一个“img”文件夹，图片放在“img”文件夹里面，图片后缀是jpg，即可跟数组一起轮播，显示格式："<script>document.write(wximg);</script>"
+    </script>	
+
+</head>     </html>
+<body>    
+<div><script>document.write(wximg);</script></div>
+<div style="position: fixed;bottom: 10;background: #eee;border-top: 1px solid #ccc;width: 100%;font-size: 16px;padding:5px;left:0px;z-index:88">
+            <div style="margin:0px auto;max-width: 600px;">
+                <div style="float:left;">
+                    微信或手机号：<a data-clipboard-action="copy" data-clipboard-target="#target" id="copy_btn"><span id="target" style="background-color: #d9126c;color: #fff;"><script>document.write(stxlwx);</script></span></a>
+                    <br>
+					<span id="copy_btn4" class="copy" style="color: #ff679a;">点击可复制</span>
+					</div>
+					<button class="btn" data-clipboard-action="copy" data-clipboard-target="#target" id="copy_btn" style="background: #4fab0b;color: #fff;border-radius: 12px;height: 40px;line-height: 40px;text-align: center;box-shadow: 0 1px 3px 0 #000;display:inline-block;width:160px;float:right;text-decoration: none;margin-right:100px;">
+					添加至微信&gt;</button>
+            </div>
+        </div>    
+</body>   
+<script>    
+    $(document).ready(function(){       
+        var clipboard = new Clipboard('#copy_btn');    
+        clipboard.on('success', function(e) {    
+            alert("微信号复制成功",1500); 
+            window.location.href='weixin://';//跳转到微信
+            e.clearSelection();    
+            console.log(e.clearSelection);    
+        });    
+    });    
+</script>
+</html>
